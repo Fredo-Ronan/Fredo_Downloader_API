@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const { getInstaAudioVideo } = require("./instagram");
 
 const app = express();
 
@@ -14,16 +15,14 @@ app.get("/api/instagram-download", async (req, res) => {
 
     console.log("GET Instagram Downloader accessed on " + date);
 
-    const response = await axios.get(`https://rest-api.akuari.my.id/downloader/igdl3?link=${req.query.url}`);
-    const audio = response.data.respon.graphql.clips_metadata.original_sound_info.progressive_download_url;
-    const video = response.data.respon.graphql.shortcode_media.video_url;
+    const result = await getInstaAudioVideo(req.query.url);
 
     res.json({
         "creator": "Fredo Ronan",
         "date_accessed": date,
         "source_api": "https://rest-api.akuari.my.id",
-        "audio": audio,
-        "video": video
+        "audio": result.audio,
+        "video": result.video
     });
 });
 
