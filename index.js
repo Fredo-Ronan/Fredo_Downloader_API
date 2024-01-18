@@ -1,5 +1,4 @@
 const express = require("express");
-const axios = require("axios");
 const cors = require("cors");
 const { getInstaAudioVideo } = require("./instagram");
 
@@ -8,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get("/api/instagram-download", async (req, res) => {
     const date = new Date().toLocaleString();
@@ -39,5 +38,5 @@ app.get("/api/youtube-download", async (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log("Server UP listen on PORT 3000.....");
+    console.log(`Server UP and listen on PORT ${PORT}.....`);
 });
