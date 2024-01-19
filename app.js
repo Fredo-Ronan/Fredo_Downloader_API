@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const { getInstaAudioVideo } = require("./instagram");
+const { getInstaAudioVideo, getAll } = require("./instagram");
 
 const app = express();
 
@@ -20,6 +20,7 @@ app.get("/api/instagram-download", async (req, res) => {
     console.log("GET Instagram Downloader accessed on " + date);
 
     const result = await getInstaAudioVideo(req.query.url);
+    // const response = await getAll(req.query.url);
 
     res.json({
         "creator": "Fredo Ronan",
@@ -28,6 +29,10 @@ app.get("/api/instagram-download", async (req, res) => {
         "audio": result.audio,
         "video": result.video
     });
+
+    // res.json({
+    //     data: response,
+    // })
 });
 
 app.get("/api/youtube-download", async (req, res) => {
