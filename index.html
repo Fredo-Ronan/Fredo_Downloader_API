@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Fredo Downloader API</title>
+    <style>
+        body {
+            transition: all 0.5s ease-in-out;
+        }
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2rem;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background-color: #005eab;
+            color: white;
+            padding-top: 1rem;
+            padding-left: 2rem;
+            padding-bottom: 1rem;
+            padding-right: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 3px 5px 15px -3px rgba(0,0,0,0.5);
+        }
+
+        .detail {
+            margin-top: 1rem;
+            max-width: 35rem;
+        }
+
+        pre {
+            background-color: black; 
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body style="background-color: #004985; color: white;">
+    <div class="main-container">
+        <div class="title-container">
+            <div class="title">
+                <h2>Welcome to Fredo Downloader API</h2>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- WHAT IS THIS SECTION -->
+            <div class="card">
+                <div class="sub-title">
+                    <h4>What is this? 🧐</h4>
+                    <div class="detail">
+                        <p>
+                            This is an API for download any instagram or youtube videos using just the share link.
+                            For now this API only support instagram video download, any other post you can try it yourself if it's works,
+                            and for the youtube video download it's still in development progress.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://github.com/Fredo-Ronan/Fredo_Downloader_API" style="color: white; text-decoration: none;" target="_blank">
+                            <button class="btn btn-success">
+                                Go to source code ↗️
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF WHAT IS THIS SECTION -->
+
+
+            <!-- HOW TO USE SECTION -->
+            <div class="card">
+                <div class="sub-title">
+                    <h4>How to use it? 🤔</h4>
+                </div>
+                <div class="detail">
+                    <p>
+                        To use this API is simply using the same link follow by some parameters to download things.<br>
+                        The link structure is like this : <br>
+                        <pre>https://fredo-downloader-api.vercel.app/api/instagram-download?url={your_instagram_share_link}</pre>
+                    </p>
+                </div>
+            </div>
+            <!-- END OF HOW TO USER SECTION -->
+
+
+            <!-- EXAMPLES SECTION -->
+            <div class="card">
+                <div class="sub-title">
+                    <h4>Example 🧑‍💻</h4>
+                </div>
+                <div class="detail">
+                    <p>
+                        The instagram share link or the link to instagram video/reel :
+                        <pre>https://www.instagram.com/reel/C2IDZSNs6v8/</pre>
+                        <br>
+                        Concat with the link using the query parameter like this:
+                        <pre>https://fredo-downloader-api.vercel.app/api/instagram-download?url=https://www.instagram.com/reel/C2IDZSNs6v8/</pre>
+                        <br>
+                        Then you will get the JSON response more or less like this:
+                        <pre>{
+    "creator": "Fredo Ronan",
+    "date_accessed": "1/19/2024, 5:59:54 AM",
+    "source_api": "https://rest-api.akuari.my.id",
+    "audio": "https://scontent-hkg1-2.xx.fbcdn.net/v/t39.12897-6/419855211_914893013361767_3010262165746548939_n.m4a?_nc_cat=104&ccb=1-7&_nc_sid=c2de2f&_nc_ohc=K6MZ4yxeJxsAX-BnHUr&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent-hkg1-2.xx&oh=00_AfDgjLJvERc6x55WnZYy3En8ih2_39uJf0M7_EzcMtTX9g&oe=65AE1D70",
+    "video": "https://scontent-hkg1-1.cdninstagram.com/o1/v/t16/f1/m69/GLsDOwpLCdcLUBIDAPdw3rk53CN5bpR1AAAF.mp4?efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuMTA4MC5oaWdoIn0&_nc_ht=scontent-hkg1-1.cdninstagram.com&_nc_cat=109&vs=364079782989130_2121532539&_nc_vs=HBksFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HTHNET3dwTENkY0xVQklEQVBkdzNyazUzQ041YnBSMUFBQUYVAALIAQAVAhg6cGFzc3Rocm91Z2hfZXZlcnN0b3JlL0dONkw0eEw1QUlDS2ZROERBUGZxeVRpSTZ3Wi1icFIxQUFBRhUCAsgBACgAGAAbABUAACaO1PLKn%2F31PxUCKAJDMywXQEOqn752yLQYEmRhc2hfaGlnaF8xMDgwcF92MREAdf4HAA%3D%3D&_nc_rid=60fc7d37ec&ccb=9-4&oh=00_AfDvhyeGkqiEx3Zzbs2Ot4C0Pk9_2XLjc3IWLsMO1mSTfw&oe=65AA9CB5&_nc_sid=4f4799"
+}</pre>
+                    </p>
+                </div>
+            </div>
+            <!-- END OF EXAMPLES SECTION -->
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
