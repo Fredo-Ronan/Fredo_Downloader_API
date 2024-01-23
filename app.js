@@ -55,17 +55,19 @@ app.get("/api/youtube-download", async (req, res) => {
     quality: "highestaudio",
   });
 
-  // Combine video and audio streams into one
-  const stream = ytdl(videoUrl, { format: videoFormat })
-    .on("error", (error) => console.error(error))
-    .pipe(res);
+  // Generate download links for video and audio
+  const videoDownloadLink = videoFormat.url;
+  const audioDownloadLink = audioFormat.url;
 
-  // Set appropriate headers
-  res.setHeader(
-    "Content-Disposition",
-    `attachment; filename="${info.title}.mp4"`
-  );
-  res.setHeader("Content-Type", "video/mp4");
+  // You can optionally include the title in the response
+  const title = info.title;
+
+  // Send the links in the response
+  res.json({
+    videoDownloadLink,
+    audioDownloadLink,
+    title,
+  });
 
   // res.json({
   //     "creator": "Fredo Ronan",
