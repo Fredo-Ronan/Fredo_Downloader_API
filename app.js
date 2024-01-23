@@ -64,17 +64,12 @@ app.get("/api/youtube-download", async (req, res) => {
 
   // Send the links in the response
   res.json({
-    videoDownloadLink,
-    audioDownloadLink,
+    creator: "Fredo Ronan",
+    date_accessed: date,
+    audio: audioDownloadLink,
+    video: videoDownloadLink,
     title,
   });
-
-  // res.json({
-  //     "creator": "Fredo Ronan",
-  //     "date_accessed": date,
-  //     "audio": "nothing",
-  //     "video": result.videoUrl,
-  // })
 });
 
 app.listen(PORT, () => {
