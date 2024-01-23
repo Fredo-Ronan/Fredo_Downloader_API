@@ -1,7 +1,17 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs14.x"
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/youtube-download",
+      "dest": "youtube-download.js"
+    },
+    {
+      "src": "/api/instagram-download",
+      "dest": "instagram-download.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
     }
-  }
+  ]
 }
