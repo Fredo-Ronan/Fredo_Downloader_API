@@ -44,32 +44,27 @@ app.get("/api/youtube-download", async (req, res) => {
 
   // const result = await getYoutubeVideo2(req.query.url);
 
-  try {
-    const info = await ytdl.getInfo(videoUrl);
+  const info = await ytdl.getInfo(videoUrl);
 
-    // Get the highest video and audio quality formats
-    const videoFormat = ytdl.chooseFormat(info.formats, {
-      quality: "highestvideo",
-    });
-    const audioFormat = ytdl.chooseFormat(info.formats, {
-      quality: "highestaudio",
-    });
+  // Get the highest video and audio quality formats
+  const videoFormat = ytdl.chooseFormat(info.formats, {
+    quality: "highestvideo",
+  });
+  const audioFormat = ytdl.chooseFormat(info.formats, {
+    quality: "highestaudio",
+  });
 
-    // Combine video and audio streams into one
-    const stream = ytdl(videoUrl, { format: videoFormat })
-      .on("error", (error) => console.error(error))
-      .pipe(res);
+  // Combine video and audio streams into one
+  const stream = ytdl(videoUrl, { format: videoFormat })
+    .on("error", (error) => console.error(error))
+    .pipe(res);
 
-    // Set appropriate headers
-    res.setHeader(
-      "Content-Disposition",
-      `attachment; filename="${info.title}.mp4"`
-    );
-    res.setHeader("Content-Type", "video/mp4");
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+  // Set appropriate headers
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename="${info.title}.mp4"`
+  );
+  res.setHeader("Content-Type", "video/mp4");
 
   // res.json({
   //     "creator": "Fredo Ronan",
