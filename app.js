@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const { getInstaAudioVideo, getAll } = require("./instagram");
-const { getYoutubeVideo } = require("./youtube");
+const { getYoutubeVideo, getYoutubeVideo2 } = require("./youtube");
 
 const app = express();
 
@@ -40,7 +40,7 @@ app.get("/api/youtube-download", async (req, res) => {
     const date = new Date().toLocaleString();
     console.log("GET Youtube Downloader accessed on " + date);
 
-    const result = await getYoutubeVideo(req.query.url);
+    const result = await getYoutubeVideo2(req.query.url);
 
     res.json({
         "creator": "Fredo Ronan",

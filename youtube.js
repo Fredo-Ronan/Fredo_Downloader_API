@@ -5,6 +5,7 @@ const ffmpeg = require("ffmpeg-static");
 const { Blob } = require("buffer");
 
 const DownloadYT = (url) => {
+  console.log("MASUK DOWNLOAD YT");
   return new Promise((resolve, reject) => {
     const tracker = {
       start: Date.now(),
@@ -57,7 +58,9 @@ const DownloadYT = (url) => {
         )}MB).${" ".repeat(10)}\n`
       );
 
-      process.stdout.write(`Merged | processing frame ${tracker.merged.frame} `);
+      process.stdout.write(
+        `Merged | processing frame ${tracker.merged.frame} `
+      );
       process.stdout.write(
         `(at ${tracker.merged.fps} fps => ${tracker.merged.speed}).${" ".repeat(
           10
@@ -165,5 +168,34 @@ module.exports.getYoutubeVideo = async (url) => {
     return {
       error: error.message || "An error occurred",
     };
+  }
+};
+
+module.exports.getYoutubeVideo2 = async (videoUrl) => {
+  try {
+    const info = await ytdl.getInfo(videoUrl);
+
+    // Get the highest video and audio quality formats
+    const videoFormat = ytdl.chooseFormat(info.formats, {
+      quality: "highestvideo",
+    });
+    const audioFormat = ytdl.chooseFormat(info.formats, {
+      quality: "highestaudio",
+    });
+
+    // Combine video and audio streams into one
+    const stream = ytdl(videoUrl, { format: videoFormat })
+      .on("error", (error) => console.error(error))
+      .pipe(res);
+
+    // Set appropriate headers
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${info.title}.mp4"`
+    );
+    res.setHeader("Content-Type", "video/mp4");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
