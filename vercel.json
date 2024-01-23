@@ -3,11 +3,15 @@
   "routes": [
     {
       "src": "/api/youtube-download",
-      "dest": "youtube-download.js"
+      "dest": "youtube.js"
     },
     {
       "src": "/api/instagram-download",
-      "dest": "instagram-download.js"
+      "dest": "instagram.js"
+    },
+    {
+      "src": "/",
+      "dest": "index.html"
     },
     {
       "src": "/(.*)",
