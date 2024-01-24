@@ -62,12 +62,34 @@ app.get("/api/youtube-download", async (req, res) => {
   // You can optionally include the title in the response
   const title = info.title;
 
+  const videoData = await fetch(videoDownloadLink).then((res) => res.arrayBuffer());
+  const audioData = await fetch(audioDownloadLink).then((res) => res.arrayBuffer());
+
+  console.log(videoData);
+  console.log(audioData);
+
+  // const blobVideo = new Blob([videoData], {type: 'application/octet-stream'});
+  // const blobAudio = new Blob([audioData], {type: 'application/octet-stream'});
+
+  // const urlVideo = URL.createObjectURL(blobVideo);
+  // const urlAudio = URL.createObjectURL(blobAudio);
+
+  const videoUint8Array = new Uint8Array(videoData)
+  const audioUint8Array = new Uint8Array(audioData)
+
+  const textDecoder = new TextDecoder('utf-8');
+  const videoStringDecoded = textDecoder.decode(videoUint8Array);
+  const audioStringDecoded = textDecoder.decode(audioUint8Array);
+
+  const base64Video = Buffer.from(videoStringDecoded).toString('base64');
+  const base64Audio = Buffer.from(audioStringDecoded).toString('base64');
+
   // Send the links in the response
   res.json({
     creator: "Fredo Ronan",
     date_accessed: date,
-    audio: audioDownloadLink,
-    video: videoDownloadLink,
+    audio: base64Audio,
+    video: base64Video,
     title,
   });
 });
