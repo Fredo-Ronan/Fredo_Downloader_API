@@ -14,7 +14,7 @@
     ],
     "functions": {
       "yt": {
-        "maxDurations": 120
+        "maxDuration": 120
       }
     }
   }
