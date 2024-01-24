@@ -13,8 +13,6 @@
       }
     ],
     "functions": {
-      "yt": {
-        "maxDuration": 120
-      }
+      "maxDuration": 120
     }
   }
