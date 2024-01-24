@@ -1,18 +1,20 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "app.js",
-        "use": "@now/node"
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@now/node",
+      "config": {
+        "functions": {
+          "maxDuration": 120
+        }
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "app.js"
-      }
-    ],
-    "functions": {
-      "maxDuration": 120
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
+  ]
+}
