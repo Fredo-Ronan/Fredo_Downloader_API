@@ -9,4 +9,4 @@ any Youtube Video with always in high quality video resolution and audio availab
 
 ## What is being develop?
 Because this is still in first step, this API only serve instagram reels download, the other type of instagram post i'm not sure it will works, but you can try it yourself.
-And not only that, the youtube video downloader also being develop, so stay tuned :)
+And not only that, the youtube video downloader also being develop, so stay tuned :) 
