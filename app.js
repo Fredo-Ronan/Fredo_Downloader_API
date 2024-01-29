@@ -24,13 +24,26 @@ app.get("/api/instagram-download", async (req, res) => {
   const result = await getInstaAudioVideo(req.query.url);
   // const response = await getAll(req.query.url);
 
-  res.json({
-    creator: "Fredo Ronan",
-    date_accessed: date,
-    source_api: "https://rest-api.akuari.my.id",
-    audio: result.audio,
-    video: result.video,
-  });
+  if(result.status === "OK"){
+
+    res.json({
+      status: result.status,
+      creator: "Fredo Ronan",
+      date_accessed: date,
+      source_api: "https://rest-api.akuari.my.id",
+      audio: result.audio,
+      video: result.video,
+    });
+  }else {
+    res.json({
+      status: result.status,
+      creator: "Fredo Ronan",
+      date_accessed: date,
+      source_api: "https://rest-api.akuari.my.id",
+      audio: result.audio,
+      video: result.video,
+    })
+  }
 
   // res.json({
   //     data: response,
